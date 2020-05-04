@@ -1,2 +1,2 @@
-# Tasks_-
+# Special course tasks
 Спецкурс "ООП"
