@@ -1,82 +1,98 @@
 #include<string>
+#include<iostream>
 using namespace std;
-template<class T>
-class contener
-{
-	// Contener €вл€етс€ основным классом;
-private:
-	int i; // i - количество элементов в этом контейнере;
-	T *a = new T[10000]; // // max принимает 10000 элементов;
-public:
-	contener(){ i = 0; };  // Kогда эта переменна€ конструктора объ€влена i = 0;
-	
-	void Add_item(T b)
-	{
-		a[++i] = b; // мы добавл€ем элемент в конце
-	}
-	void clean_contener()
-	{
-		if (i > 0)
-			Чi; // удалить последний элемент;
-
-	}
-	T Know_index(int j)
-	{
-		// ¬озвращает j, если в контейнере есть элемент j;
-		if (j > 0 && j <= i)
-			return a[j];
-
-	}
-	int Number_elements()
-	{
-		return i; // возвращает количество элементов в контейнере;
-	}
-	bool Empty()
-	{
-		// возвращает true, если контейнер пуст, иначе false;
-		if (i > 0)return false;
-		else return true;
-	}
-	void clean(){ i = 0; }// очистка контейнера;
-	~contener(){ delete a; }// этот деструктор удал€ет массив при закрытии программы; 
-};
-class Point{
-public:
-	double a, b;
-};
 class Printable
 {
 public:
-	//virtual string name() = 0;
+
+	void CoutString(string x)
+	{
+		cout << x;
+	}
 
 };
-
 class Named :public Printable
 {
-private:
-	double x, y;
-	double x1, y1, R;
-	double X1, X2, Y1, Y2;
-	double squar;
-	contener<Point>point_xy;
-	double a, b, c, d;
 public:
-	Named() :Printable(){};
-	void  point(double _x, double _y) { x = _x; y = _y; };
-	void  circle(double _x1, double _y1) { x1 = _x1; y1 = _y1; };
-	void  rect(double _x1, double _y1, double _x2, double _y2){
-		X1 = _x1; X2 = _x2; Y1 = _y1; Y2 = _y2;
-	};
-	void  square(double a) { squar = a; };
-	void  polyline(Point a) { point_xy.Add_item(a); };
-	void  polylgon(double _a, double _b, double _c, double _d) { a = _a; c = _c; b = _b; d = _d; };
+	virtual double getSquare() = 0;
+	virtual double getPerimeter() = 0;
+	virtual string showFigureType() = 0;
 
 };
-
 class Shapes :public Printable
 {
 public:
-	Shapes() :Printable(){};
-	//int GetCount();
+	Shapes():Printable(){};
+	int GetCount();
 
+};
+
+class Rectangle : public Named
+{
+private:
+	double width;
+	double height;
+public:
+	Rectangle(double w, double h)
+	{
+		width = w;
+		height = h;
+	}
+	double getSquare() override
+	{
+	return width * height;
+	}
+	double getPerimeter() override
+	{
+		cout << width * 2 + height * 2 << endl;
+	}
+	string showFigureType()
+	{
+		"Rectangle" ;
+	}
+};
+class Circle : public Named
+{
+    private:
+	double radius;
+    public:
+		Circle(double r)
+		{
+			radius = r;
+		}
+		double getSquare() override
+	{
+		return radius * radius * 3.14 ;
+	}
+		double getPerimeter() override
+	{
+			return 2 * 3.14 * radius;
+	}
+		string showFigureType()
+	{
+		return "Circle" ;
+	}
+};
+
+
+class Square:public Named{
+private:
+	double a;
+public:
+	Square(double x) 
+	{
+		a = x;
+	}
+	double getSquare() override
+	{
+		return a * a ;
+	}
+	double getPerimeter() override
+	{
+		return 4 * a ;
+	}
+	string showFigureType()
+	{
+		return "Square" ;
+	}
 };

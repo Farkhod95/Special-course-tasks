@@ -1,15 +1,26 @@
 #include<iostream>
 #include"Base.h"
-using namespace std;
+#include"Contianer.h"
 int main()
 {
-
-	contener<Named>b;
-	Named a;
-	a.circle(12, 64);
-	a.point(56, 58);
-	b.Add_item(a);
-
+	
+	Container<int> obg;
+	obg.add(465);
+	obg.add(54);
+	obg.add(65);
+	obg.add(37);
+	obg.add(74);
+	obg.add(78);
+	obg.add(74);
+	obg.add(77);
+	std::cout << "length of massive: " << obg.length() << endl;
+	for (int i = 0; i < obg.length(); i++)
+	{
+		try{
+			std::cout << obg[i]<<endl;
+	       }
+		catch (...){}
+	}
 	system("pause");
 	return 0;
 }
